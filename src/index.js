@@ -1,15 +1,13 @@
-async function getWeatherData() {
+import getWeatherData from "./getWeather"
+import getGif from "./getGif"
 
-    const weather = await fetch('http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=66f249ad58eecb093bf9f12e57152985', { mode: 'cors' })
-    const weatherData = await weather.json()
-    const description = await weatherData.weather[0].description
-    console.log('in: ' + description)
 
-    return description
-
-}
-
+const img = document.createElement('img')
+document.body.appendChild(img)
 
 getWeatherData().then(function (response) {
     console.log(response)
+    getGif('weather '+response).then(function(response) {
+        img.src = response
+    })
 })
