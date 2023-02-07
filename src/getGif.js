@@ -1,9 +1,7 @@
-export default async function getGif(param) {
-
-
+export default async function getGif(searchParam) {
     try {
         const response = await fetch(
-            `https://api.giphy.com/v1/gifs/translate?api_key=H04x2cbqGE1H3kFQWOrSud70rPKEEb8X&s=${param}`,
+            `https://api.giphy.com/v1/gifs/translate?api_key=H04x2cbqGE1H3kFQWOrSud70rPKEEb8X&s=${searchParam}`,
             { mode: 'cors' }
         );
         const imgData = await response.json();
@@ -12,9 +10,6 @@ export default async function getGif(param) {
         return imgUrl
     } catch (error) {
         console.error('Error:', error);
-        alert('try something else');
+        alert('Can`t find picture, try refreshing');
     }
-
-
-
 }

@@ -5,9 +5,22 @@ import getGif from "./getGif"
 const img = document.createElement('img')
 document.body.appendChild(img)
 
-getWeatherData().then(function (response) {
-    console.log(response)
-    getGif('weather '+response).then(function(response) {
-        img.src = response
+
+const successCallback = (position) => {
+    getWeatherData(position.coords.latitude, position.coords.longitude).then(function (response) {
+        getGif(response).then(function (response) {
+            img.src = response
+        })
     })
-})
+};
+
+const errorCallback = (error) => {
+    console.log(error);
+    getWeatherData(40.785091, -73.968285).then(function (response) {
+        getGif(response).then(function (response) {
+            img.src = response
+        })
+    })
+};
+
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
