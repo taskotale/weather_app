@@ -6,14 +6,13 @@ export default async function getWeatherData(lat, lon) {
         const weatherData = await weather.json()
         const description = weatherData.weather[0].description
         const temp = weatherData.main.temp
-        const locationName = document.createElement('h1')
-        locationName.textContent = `${weatherData.name} - ${description} - ${temp}F`
+        const locationName = document.querySelector('h1')
+        locationName.textContent = `${weatherData.name} - ${description} - ${temp.toFixed(0)}F`
 
-        document.body.appendChild(locationName)
-
-        return 'sky weather '+description
+        return 'sky weather ' + description
     } catch (error) {
         console.error('Error:', error);
         alert('something went wrong, try refreshing page');
     }
 }
+

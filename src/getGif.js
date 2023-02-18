@@ -6,7 +6,6 @@ export default async function getGif(searchParam) {
         );
         const imgData = await response.json();
         const imgUrl = await imgData.data.images.original.url;
-        console.log(imgUrl)
         return imgUrl
     } catch (error) {
         console.error('Error:', error);
